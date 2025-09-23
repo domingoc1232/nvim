@@ -29,7 +29,7 @@ return {
         capabilities = capabilities
       })
       lspconfig.clangd.setup({
-        capabilities=capabilities
+        capabilities = capabilities
       })
 
       vim.diagnostic.config({
