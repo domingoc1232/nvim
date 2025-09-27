@@ -3,12 +3,19 @@ return {
   branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons",    
+    "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
   },
-  config = function()
-    -- Set a keymap to open and close the file explorer
-    -- The '\' key is a common choice for this
-    vim.keymap.set('n', '<leader>n', '<cmd>Neotree toggle<cr>', { desc = "Explorer (NeoTree)" })
+  opts = {
+    filesystem = {
+      filtered_items = {
+        hide_dotfiles = false,
+        visible = true, -- 'dim' greyed out files
+      },
+    },
+  },
+  config = function(_, opts)
+    require("neo-tree").setup(opts)
+    vim.keymap.set("n", "<leader>n", "<cmd>Neotree toggle<cr>", { desc = "Explorer (NeoTree)" })
   end,
 }

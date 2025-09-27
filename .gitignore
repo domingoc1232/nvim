@@ -1,5 +1,6 @@
 .local/
 .DS_Store
+.luarc.json
 
 # Ignore swap and undo files
 *.swp
