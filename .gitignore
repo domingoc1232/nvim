@@ -1,6 +1,8 @@
 .local/
 .DS_Store
 .luarc.json
+tmux-client*
+tmux-server*
 
 # Ignore swap and undo files
 *.swp
