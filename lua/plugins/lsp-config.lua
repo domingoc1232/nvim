@@ -18,19 +18,15 @@ return {
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-      local lspconfig = require("lspconfig")
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities
-      })
-      lspconfig.ts_ls.setup({
-        capabilities = capabilities
-      })
-      lspconfig.pyright.setup({
-        capabilities = capabilities
-      })
-      lspconfig.clangd.setup({
-        capabilities = capabilities
-      })
+      -- Use the new vim.lsp.config API instead of require('lspconfig')
+      local servers = { 'lua_ls', 'ts_ls', 'pyright', 'clangd' }
+
+      for _, server in ipairs(servers) do
+        vim.lsp.config[server] = {
+          capabilities = capabilities,
+        }
+        vim.lsp.enable(server)
+      end
 
       vim.diagnostic.config({
         virtual_text = {
